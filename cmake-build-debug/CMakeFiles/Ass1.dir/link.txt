@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/Ass1.dir/src/BaseFile.cpp.o CMakeFiles/Ass1.dir/src/Directory.cpp.o CMakeFiles/Ass1.dir/src/File.cpp.o CMakeFiles/Ass1.dir/src/testMain.cpp.o  -o Ass1 

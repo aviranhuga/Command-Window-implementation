@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/aviran/CLionProjects/Ass1/include/Files.h
+string
+-
+vector
+-
+
+/home/aviran/CLionProjects/Ass1/src/BaseFile.cpp
+../include/Files.h
+/home/aviran/CLionProjects/Ass1/include/Files.h
+
+/home/aviran/CLionProjects/Ass1/src/Directory.cpp
+../include/Files.h
+/home/aviran/CLionProjects/Ass1/include/Files.h
+
+/home/aviran/CLionProjects/Ass1/src/File.cpp
+../include/Files.h
+/home/aviran/CLionProjects/Ass1/include/Files.h
+
+/home/aviran/CLionProjects/Ass1/src/testMain.cpp
+../include/Files.h
+/home/aviran/CLionProjects/Ass1/include/Files.h
+iostream
+-
+
