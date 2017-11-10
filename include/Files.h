@@ -46,6 +46,7 @@ public:
 	int getSize(); // Return the size of the directory (recursively)
 	string getAbsolutePath();  //Return the path from the root to this
 
+    bool BiggerString(string a,string b); //Return true if a is bigger then b
 };
 
 #endif

@@ -7,11 +7,10 @@
 
 int main(int , char **) {
 
-        BaseFile* BaseFile1 = new File("test",1);
 
-        File File1("File1",1);
+        File File1("File1",3);
         File File2("File2",2);
-        File File3("File3",3);
+        File File3("File3",1);
         File File11("File11",4);
         File File12("File12",5);
         File File21("File21",6);
@@ -43,21 +42,21 @@ int main(int , char **) {
         File2.setName("File2");
 
         //Test 3 check - BaseFile.getName()
-         if(File1.getName().compare(File2.getName())==0)
+         if(File1.getName().compare(File2.getName())!=0)
           cout << "3 test is OK"<<endl;
          else cout << "Fail at test 3"<< endl;
 
 
-        cout << "File.cpp Tests starts:"<< endl;
+       //File.cpp Tests starts
 
         //Test 4 check - BaseFile.getName()
-          if(File1.getSize()==1 && File2.getSize()==2)
+          if(File1.getSize()==3 && File2.getSize()==2)
              cout << "4 test is OK"<<endl;
          else cout << "Fail at test 4"<< endl;
 
-
+        //Directory.cpp Tests starts
         //Test 5 check - Directory *getParent()
-        cout << "Directory.cpp Tests starts:"<< endl;
+
         if(DirRoot.getParent() == nullptr && Dir111.getParent() == &Dir11)
           cout << "5 test is OK"<<endl;
          else cout << "Fail at test 5"<< endl;
@@ -70,15 +69,111 @@ int main(int , char **) {
         Dir12.setParent(&Dir1);
 
     //Test 7 check - addFile(BaseFile* file)
-    DirRoot.addFile(BaseFile1);
+    DirRoot.addFile(&File1);
     DirRoot.addFile(&File2);
-    vector<BaseFile*>::iterator iterator1 = DirRoot.getChildren().begin();
-    //string what =  (*(*iterator1))->getName();
-    //cout << what << endl;
+    DirRoot.addFile(&File3);
+    Dir1.addFile(&File11);
+    Dir1.addFile(&File12);
+    Dir2.addFile(&File21);
+    Dir2.addFile(&File22);
+    Dir11.addFile(&File111);
+    Dir12.addFile(&File121);
+    Dir111.addFile(&File1111);
+    Dir111.addFile(&File1112);
+    int numberOfFiles = 0;
 
-    //for (; it!=DirRoot.getChildren().end(); it++) {
-   //     cout << (*it)->getName() << endl;
-   //     cout << "FUCK" << endl;
-   // }
+    vector<BaseFile*> ChildrenCopy = DirRoot.getChildren();
+    vector<BaseFile*>::iterator it = ChildrenCopy.begin();
+
+    for (; it!= ChildrenCopy.end() ; numberOfFiles++, it++) ;
+    if(numberOfFiles == 3)
+        cout << "7 test is OK"<<endl;
+    else cout << "Fail at test 7"<< endl;
+
+    //Test 8 check - void removeFile(string name)
+    DirRoot.removeFile("File2");
+
+    ChildrenCopy = DirRoot.getChildren();
+    it = ChildrenCopy.begin();
+
+    if( (*it)->getName().compare("File1")==0) {
+        it++;
+        if ((*it)->getName().compare("File3")==0)
+            cout << "8 test is OK"<<endl;
+        else cout << "Fail at test 8"<< endl;
+    }else cout << "Fail at test 8"<< endl;
+
+    //Test 9 check - void removeFile(string name)
+    DirRoot.removeFile("File3");
+    ChildrenCopy = DirRoot.getChildren();
+    it = ChildrenCopy.begin();
+        if( (*it)->getName().compare("File1")==0)
+            cout << "9 test is OK"<<endl;
+        else cout << "Fail at test 9"<< endl;
+
+    DirRoot.addFile(&File2);
+    DirRoot.addFile(&File3);
+
+    //Test 10 check - void removeFile(string name)
+    ChildrenCopy = DirRoot.getChildren();
+    it = ChildrenCopy.begin();
+    numberOfFiles = 0;
+    for (; it!= ChildrenCopy.end() ; numberOfFiles++, it++) ;
+    if(numberOfFiles == 3)
+        cout << "10 test is OK"<<endl;
+    else cout << "Fail at test 10"<< endl;
+
+
+    DirRoot.removeFile(&File2);
+
+    //Test 11 check - void removeFile(BaseFile* file)
+    ChildrenCopy = DirRoot.getChildren();
+    it = ChildrenCopy.begin();
+    if( (*it)->getName().compare("File1")==0) {
+        it++;
+        if ((*it)->getName().compare("File3")==0)
+            cout << "11 test is OK"<<endl;
+        else cout << "Fail at test 11"<< endl;
+    }else cout << "Fail at test 11"<< endl;
+    DirRoot.removeFile(&File3);
+    DirRoot.addFile(&File2);
+    DirRoot.addFile(&File3);
+
+    //Test 12 check - void removeFile(BaseFile* file)
+    DirRoot.addFile(&Dir1);
+    DirRoot.addFile(&Dir2);
+    Dir1.addFile(&Dir11);
+    Dir1.addFile(&Dir12);
+    Dir11.addFile(&Dir111);
+
+
+
+    if(DirRoot.getSize()== 55)
+        cout << "12 test is OK"<<endl;
+    else cout << "Fail at test 12"<< endl;
+
+    //Test 13 check - void removeFile(BaseFile* file)
+    if(Dir11.getSize()== 18)
+        cout << "13 test is OK"<<endl;
+    else cout << "Fail at test 13"<< endl;
+
+
+    //Test 14 check - string getAbsolutePath();
+    string PathDir111 = Dir111.getAbsolutePath();
+    string PathDirRoot = DirRoot.getAbsolutePath();
+    string PathDir2= Dir2.getAbsolutePath();
+    if(PathDir111 == "/Dir1/Dir11/Dir111" && PathDirRoot == "/"&& PathDir2 == "/Dir2")
+        cout << "14 test is OK"<<endl;
+    else cout << "Fail at test 14"<< endl;
+
+    //Test 15 check - int getSize();
+    Directory DirEmpty("DirEmpty", nullptr);
+    if(DirEmpty.getSize()==0)
+        cout << "15 test is OK"<<endl;
+    else cout << "Fail at test 15"<< endl;
+
+
+    DirRoot.sortBySize();
+    DirRoot.sortByName();
         return 0;
 }
