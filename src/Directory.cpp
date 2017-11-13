@@ -93,7 +93,11 @@ void Directory::sortBySize() {
         swapp = false;
         p = children.data();
         for (size_t i = 0; i < children.size()-1 ; i++) {
-            if ((**p).getSize()>(**(p+1)).getSize()){
+
+            if ( ( (**p).getSize()>(**(p+1)).getSize() )
+                || (((**p).getSize()==(**(p+1)).getSize())
+                   && ( BiggerString( (**p).getName(),(**(p+1)).getName()) )))
+                    {
                 temp = (*(p+1));
                 (*(p+1))= (*p);
                 (*p)=temp;
@@ -134,3 +138,19 @@ string Directory::getAbsolutePath() {
     return Path;
     }
 
+Directory::~Directory() {
+    if (!children.empty()) {
+        BaseFile* pd;
+        for (vector<BaseFile *>::iterator it = children.begin(); it != children.end(); ++it) {
+            pd = *it;
+            delete pd;
+            cout << (*it)->getName() << endl;
+        }
+    }
+    cout << "Directiry Destractor:" << endl;
+}
+
+
+bool Directory::directoryType() {
+    return true;
+}

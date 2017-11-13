@@ -3,6 +3,7 @@
 //
 
 #include "../include/Files.h"
+#include "../include/Environment.h"
 #include <iostream>
 
 int main(int , char **) {
@@ -173,7 +174,28 @@ int main(int , char **) {
     else cout << "Fail at test 15"<< endl;
 
 
+    Environment env;
+    env.start();
+
     DirRoot.sortBySize();
     DirRoot.sortByName();
+
+    BaseFile* testfile1 = new File("testfile1",3);
+    BaseFile* testfile2 = new File("testfile2",3);
+    BaseFile* testfile3 = new File("testfile3",3);
+    BaseFile* testfile4 = new File("testfile4",3);
+    BaseFile* testfile5 = new File("testfile5",3);
+    Directory* test2 = new Directory("test2",&DirRoot);
+    test2->addFile(testfile1);
+    test2->addFile(testfile2);
+    test2->addFile(testfile3);
+    test2->addFile(testfile4);
+    test2->addFile(testfile5);
+
+    cout << "NOW ITS DELETE DIR:" << endl;
+    delete test2;
+    cout << "FINISH" << endl;
+
+
         return 0;
 }

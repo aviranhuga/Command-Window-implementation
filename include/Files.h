@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 
+#include <iostream>
 using namespace std;
 
 class BaseFile {
@@ -15,7 +16,8 @@ public:
 	string getName() const;
 	void setName(string newName);
 	virtual int getSize() = 0;
-	
+    virtual ~BaseFile()=0;
+	virtual bool directoryType() = 0;
 };
 
 class File : public BaseFile {
@@ -25,7 +27,8 @@ private:
 public:
 	File(string name, int size); // Constructor
 	int getSize(); // Return the size of the file
-	
+    ~File();
+	bool directoryType();
 };
 
 class Directory : public BaseFile {
@@ -46,6 +49,8 @@ public:
 	int getSize(); // Return the size of the directory (recursively)
 	string getAbsolutePath();  //Return the path from the root to this
 
+	bool directoryType();
+    ~Directory();
     bool BiggerString(string a,string b); //Return true if a is bigger then b
 };
 

@@ -13,11 +13,12 @@ class Environment {
 private:
 	vector<BaseCommand*> commandsHistory;
 	FileSystem fs;
-
+    BaseCommand* findcommand(string command, string args);
 public:
 	Environment();
 	void start();
-	FileSystem& getFileSystem() const; // Get a reference to the file system
+	string fixargs(string str);
+	FileSystem& getFileSystem(); // Get a reference to the file system
 	void addToHistory(BaseCommand *command); // Add a new command to the history
 	const vector<BaseCommand*>& getHistory() const; // Return a reference to the history of commands
 };
