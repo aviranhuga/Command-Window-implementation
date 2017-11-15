@@ -11,13 +11,6 @@ void CdCommand::execute(FileSystem &fs) {
         return; //empty args - do nothing
     }
 
-    if(getArgs().compare("..")==0){ // go back to parent
-        if (fs.getWorkingDirectory().getParent() == nullptr){// we are in the root - stay in cd
-            return;
-        }
-        fs.setWorkingDirectory(fs.getWorkingDirectory().getParent());
-    }//end of ..
-    else { // not a ".." path
         Directory* temp = findpath(fs,getArgs());
         if (temp==nullptr){
             cout << "The system cannot find the path specified" << endl;
@@ -27,7 +20,6 @@ void CdCommand::execute(FileSystem &fs) {
             fs.setWorkingDirectory(temp);
             return;
         }
-    }
     }
 
 string CdCommand::toString() {

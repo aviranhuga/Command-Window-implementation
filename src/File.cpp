@@ -11,9 +11,17 @@ int File::getSize() {
     return size;
 }
 
-File::~File()=default;
+//File::~File()=default;
+File::~File(){
+    cout << "file destractor" << endl;
+}
 
 bool File::directoryType() {
     return false;
+}
+
+File::File(const File &other):BaseFile(other.getName()){
+    size = other.size;
+    cout << "file copy constructor" << endl;
 }
 

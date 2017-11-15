@@ -30,17 +30,49 @@ Directory* BaseCommand::findpath(FileSystem & fs, string path) {
             } else {// last dir
                 nextdir = path;
                 path = "";
-            }
-            if ((*temp).getChildren().empty()) return nullptr;// no dir's
-                founddir=false;
-            vector<BaseFile *> vct = (*temp).getChildren();
-            for (int i=0; i<vct.size() & founddir==false; i++) {
-                if(vct[i]->getName().compare(nextdir)==0 && vct[i]->directoryType() ) {
-                    temp = (Directory*)(vct[i]);
-                    founddir = true;
                 }
+
+            if(nextdir.compare("..")==0) {
+                if (temp->getParent()== nullptr) return nullptr;
+                temp = temp->getParent();
             }
-            if (founddir==false)return nullptr;// didnt found the dir
+            else {
+                if ((*temp).getChildren().empty()) return nullptr;// no dir's
+                founddir = false;
+                vector<BaseFile *> vct = (*temp).getChildren();
+                for (int i = 0; i < vct.size() & founddir == false; i++) {
+                    if (vct[i]->getName().compare(nextdir) == 0 && vct[i]->directoryType()) {
+                        temp = (Directory *) (vct[i]);
+                        founddir = true;
+                    }
+                }
+                if (founddir == false)return nullptr;// didnt found the dir
+            }//end of else
         }//end of while
     return temp;
     }
+
+string BaseCommand::fixstring(string str) {
+    if (str.size()==0)return str;
+    bool finish=false;
+    while(finish==false){//delete all the ' ' from the start
+        if (str[0]!=' ')finish=true;
+        else str=str.substr(1);
+    }
+    finish=false;
+    while(finish==false){//delete all the ' ' from the end
+        if (str[str.size()-1]!=' ')finish=true;
+        else str=str.substr(0,str.size()-1);
+    }
+    return str;
+}
+
+bool BaseCommand::Findfile(Directory *dir, string name) {
+    vector<BaseFile *> vct = dir->getChildren();
+    if (!vct.empty())//not empty
+        for (int i=0; i<vct.size() ; i++) {
+            if (vct[i]->getName().compare(name) == 0)//file or dir with the same name
+                return true;
+        }
+    return false;
+}

@@ -17,3 +17,4 @@ void BaseFile::setName(string newName) {
 }
 
 BaseFile::~BaseFile()=default;
+

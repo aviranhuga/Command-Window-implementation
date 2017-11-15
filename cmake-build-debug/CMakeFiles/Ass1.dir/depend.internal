@@ -14,6 +14,11 @@ CMakeFiles/Ass1.dir/src/CdCommand.cpp.o
  /home/aviran/CLionProjects/Ass1/include/FileSystem.h
  /home/aviran/CLionProjects/Ass1/include/Files.h
  /home/aviran/CLionProjects/Ass1/src/CdCommand.cpp
+CMakeFiles/Ass1.dir/src/CpCommand.cpp.o
+ /home/aviran/CLionProjects/Ass1/include/Commands.h
+ /home/aviran/CLionProjects/Ass1/include/FileSystem.h
+ /home/aviran/CLionProjects/Ass1/include/Files.h
+ /home/aviran/CLionProjects/Ass1/src/CpCommand.cpp
 CMakeFiles/Ass1.dir/src/Directory.cpp.o
  /home/aviran/CLionProjects/Ass1/include/Files.h
  /home/aviran/CLionProjects/Ass1/src/Directory.cpp
@@ -28,6 +33,11 @@ CMakeFiles/Ass1.dir/src/ErrorCommand.cpp.o
  /home/aviran/CLionProjects/Ass1/include/FileSystem.h
  /home/aviran/CLionProjects/Ass1/include/Files.h
  /home/aviran/CLionProjects/Ass1/src/ErrorCommand.cpp
+CMakeFiles/Ass1.dir/src/ExecCommand.cpp.o
+ /home/aviran/CLionProjects/Ass1/include/Commands.h
+ /home/aviran/CLionProjects/Ass1/include/FileSystem.h
+ /home/aviran/CLionProjects/Ass1/include/Files.h
+ /home/aviran/CLionProjects/Ass1/src/ExecCommand.cpp
 CMakeFiles/Ass1.dir/src/File.cpp.o
  /home/aviran/CLionProjects/Ass1/include/Files.h
  /home/aviran/CLionProjects/Ass1/src/File.cpp
@@ -35,24 +45,55 @@ CMakeFiles/Ass1.dir/src/FileSystem.cpp.o
  /home/aviran/CLionProjects/Ass1/include/FileSystem.h
  /home/aviran/CLionProjects/Ass1/include/Files.h
  /home/aviran/CLionProjects/Ass1/src/FileSystem.cpp
+CMakeFiles/Ass1.dir/src/HistoryCommand.cpp.o
+ /home/aviran/CLionProjects/Ass1/include/Commands.h
+ /home/aviran/CLionProjects/Ass1/include/FileSystem.h
+ /home/aviran/CLionProjects/Ass1/include/Files.h
+ /home/aviran/CLionProjects/Ass1/src/HistoryCommand.cpp
 CMakeFiles/Ass1.dir/src/LsCommand.cpp.o
  /home/aviran/CLionProjects/Ass1/include/Commands.h
  /home/aviran/CLionProjects/Ass1/include/FileSystem.h
  /home/aviran/CLionProjects/Ass1/include/Files.h
  /home/aviran/CLionProjects/Ass1/src/LsCommand.cpp
+CMakeFiles/Ass1.dir/src/Main.cpp.o
+ /home/aviran/CLionProjects/Ass1/include/Commands.h
+ /home/aviran/CLionProjects/Ass1/include/Environment.h
+ /home/aviran/CLionProjects/Ass1/include/FileSystem.h
+ /home/aviran/CLionProjects/Ass1/include/Files.h
+ /home/aviran/CLionProjects/Ass1/src/Main.cpp
 CMakeFiles/Ass1.dir/src/MkdirCommand.cpp.o
  /home/aviran/CLionProjects/Ass1/include/Commands.h
  /home/aviran/CLionProjects/Ass1/include/FileSystem.h
  /home/aviran/CLionProjects/Ass1/include/Files.h
  /home/aviran/CLionProjects/Ass1/src/MkdirCommand.cpp
+CMakeFiles/Ass1.dir/src/MkfileCommand.cpp.o
+ /home/aviran/CLionProjects/Ass1/include/Commands.h
+ /home/aviran/CLionProjects/Ass1/include/FileSystem.h
+ /home/aviran/CLionProjects/Ass1/include/Files.h
+ /home/aviran/CLionProjects/Ass1/src/MkfileCommand.cpp
+CMakeFiles/Ass1.dir/src/MvCommand.cpp.o
+ /home/aviran/CLionProjects/Ass1/include/Commands.h
+ /home/aviran/CLionProjects/Ass1/include/FileSystem.h
+ /home/aviran/CLionProjects/Ass1/include/Files.h
+ /home/aviran/CLionProjects/Ass1/src/MvCommand.cpp
 CMakeFiles/Ass1.dir/src/PwdCommand.cpp.o
  /home/aviran/CLionProjects/Ass1/include/Commands.h
  /home/aviran/CLionProjects/Ass1/include/FileSystem.h
  /home/aviran/CLionProjects/Ass1/include/Files.h
  /home/aviran/CLionProjects/Ass1/src/PwdCommand.cpp
-CMakeFiles/Ass1.dir/src/testMain.cpp.o
+CMakeFiles/Ass1.dir/src/RenameCommand.cpp.o
  /home/aviran/CLionProjects/Ass1/include/Commands.h
- /home/aviran/CLionProjects/Ass1/include/Environment.h
  /home/aviran/CLionProjects/Ass1/include/FileSystem.h
  /home/aviran/CLionProjects/Ass1/include/Files.h
- /home/aviran/CLionProjects/Ass1/src/testMain.cpp
+ /home/aviran/CLionProjects/Ass1/src/RenameCommand.cpp
+CMakeFiles/Ass1.dir/src/RmCommand.cpp.o
+ /home/aviran/CLionProjects/Ass1/include/Commands.h
+ /home/aviran/CLionProjects/Ass1/include/FileSystem.h
+ /home/aviran/CLionProjects/Ass1/include/Files.h
+ /home/aviran/CLionProjects/Ass1/src/RmCommand.cpp
+CMakeFiles/Ass1.dir/src/VerboseCommand.cpp.o
+ /home/aviran/CLionProjects/Ass1/include/Commands.h
+ /home/aviran/CLionProjects/Ass1/include/FileSystem.h
+ /home/aviran/CLionProjects/Ass1/include/Files.h
+ /home/aviran/CLionProjects/Ass1/include/GlobalVariables.h
+ /home/aviran/CLionProjects/Ass1/src/VerboseCommand.cpp

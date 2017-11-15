@@ -37,10 +37,12 @@ void Directory::removeFile(BaseFile *file) {
         vector<BaseFile*>::iterator it = children.begin();// iterator to first element
         for(; it != children.end() & found == false ; it++){
             if( (*it) == file ){
+                delete *it;
                 children.erase(it);
                 found=true;
             }//end of if
         }//end of for
+
 }
 
 void Directory::sortByName() {
@@ -138,19 +140,38 @@ string Directory::getAbsolutePath() {
     return Path;
     }
 
-Directory::~Directory() {
-    if (!children.empty()) {
-        BaseFile* pd;
-        for (vector<BaseFile *>::iterator it = children.begin(); it != children.end(); ++it) {
-            pd = *it;
-            delete pd;
-            cout << (*it)->getName() << endl;
-        }
-    }
+bool Directory::directoryType() {
+    return true;
+}
+
+Directory::~Directory() { //Destructor
+    BaseFile *pd = nullptr;
+    vector<BaseFile *> vct = getChildren();
+    if (!vct.empty())//not empty
+        for (int i = 0; i < vct.size(); i++) {
+                pd = vct[i];
+                delete pd;
+            }
     cout << "Directiry Destractor:" << endl;
 }
 
+Directory::Directory(const Directory &other):BaseFile(other.getName()) { //Copy Constructor
 
-bool Directory::directoryType() {
-    return true;
+    this->setParent(other.getParent());//same parent
+
+    Directory *tempDIR = nullptr;
+    File *tempFILE = nullptr;
+
+    vector<BaseFile *> vct = other.children;
+    if (!vct.empty())//not empty
+        for (int i = 0; i < vct.size(); i++) {
+            if(vct[i]->directoryType()){//he's a directory
+                tempDIR = new Directory(*(Directory *)vct[i]);
+                this->addFile(tempDIR);
+            }else{//hes a file
+                tempFILE = new File(*(File *)vct[i]);
+                this->addFile(tempFILE);
+            }
+         }//end of for
+    cout << "Directiry copy constructor" << endl;
 }

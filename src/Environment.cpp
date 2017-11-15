@@ -17,6 +17,7 @@ void Environment::start() {
     while(exit) { // run until user type exit
         cout << fs.getWorkingDirectory().getAbsolutePath() << ">"; // print path
         getline(cin,currentline); // get line from user
+        currentline=DeleteSpaces(currentline); // delete the spaces
         found = currentline.find(" "); // find the first " "
         if(found!=string::npos){// Command with args
             commandString = currentline.substr(0,found);
@@ -44,23 +45,37 @@ const vector<BaseCommand*>& Environment::getHistory() const {
 }
 
 BaseCommand* Environment::findcommand(string command, string args) {
-    command=fixargs(command);
-    args=fixargs(args);
+    command=DeleteSpaces(command);
+    args=DeleteSpaces(args);
     BaseCommand* ptr = nullptr;
-    if (command.compare("pwd")==0)
+   if (command.compare("pwd")==0)
          ptr = new PwdCommand(args);
    else  if (command.compare("ls")==0)
         ptr = new LsCommand(args);
    else  if (command.compare("cd")==0)
         ptr = new CdCommand(args);
-    else  if (command.compare("mkdir")==0)
+   else  if (command.compare("mkdir")==0)
         ptr = new MkdirCommand(args);
+   else  if (command.compare("mkfile")==0)
+       ptr = new MkfileCommand(args);
+   else  if (command.compare("cp")==0)
+       ptr = new CpCommand(args);
+   else  if (command.compare("rename")==0)
+       ptr = new RenameCommand(args);
+   else  if (command.compare("rm")==0)
+       ptr = new RmCommand(args);
+   else  if (command.compare("mv")==0)
+       ptr = new MvCommand(args);
+   else  if (command.compare("history")==0)
+       ptr = new HistoryCommand(args,this->getHistory());
+   else  if (command.compare("exec")==0)
+       ptr = new ExecCommand(args,this->getHistory());
 
     else ptr = new ErrorCommand(command + " " + args);
     return ptr;
 }
 
-string Environment::fixargs(string str) {
+string Environment::DeleteSpaces(string str) {
     if (str.size()==0)return str;
     bool finish=false;
     while(finish==false){//delete all the ' ' from the start

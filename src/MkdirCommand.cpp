@@ -6,7 +6,7 @@
 
 MkdirCommand::MkdirCommand(string args):BaseCommand(args) {}
 
-void MkdirCommand::execute(FileSystem &fs) {//TODO
+void MkdirCommand::execute(FileSystem &fs) {
 
     if(getArgs().empty())return; // no path
     string str=getArgs();
@@ -16,6 +16,10 @@ void MkdirCommand::execute(FileSystem &fs) {//TODO
     Directory* newdir = nullptr;
     bool founddir=false;
 
+    if (findpath(fs,str)!=nullptr){
+        cout << "The directory already exists"<< endl;
+        return;
+    }
     if (str[0]=='/') {//absolute path
         str = str.substr(1);
         temp = &fs.getRootDirectory();
@@ -41,6 +45,11 @@ void MkdirCommand::execute(FileSystem &fs) {//TODO
             }
         }
           if (founddir==false){
+              //Check if the name is legit
+              for(int i=0 ; i<nextdir.size() ; i++) {
+                  if (!((97 <= (int) nextdir[i] && (int) nextdir[i] <= 122) || (65 <= (int) nextdir[i] && (int) nextdir[i] <= 90) || (48 <= (int) nextdir[i] && (int) nextdir[i] <= 57)))
+                      return;
+              }
               newdir = makenewdir(nextdir,temp);
               temp->addFile(newdir);
               temp = newdir;

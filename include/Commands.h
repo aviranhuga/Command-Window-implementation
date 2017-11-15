@@ -15,6 +15,8 @@ public:
     Directory* findpath(FileSystem & fs,string path);
 	virtual void execute(FileSystem & fs) = 0;
 	virtual string toString() = 0;
+    string fixstring(string str);
+    bool Findfile(Directory* dir,string name);
 };
 
 class PwdCommand : public BaseCommand {
@@ -29,7 +31,7 @@ class CdCommand : public BaseCommand {
 private:
 public:
 	CdCommand(string args);
-	void execute(FileSystem & fs);//TODO
+	void execute(FileSystem & fs);
 	string toString();
 };
 
@@ -37,7 +39,7 @@ class LsCommand : public BaseCommand {
 private:
 public:
 	LsCommand(string args);
-	void execute(FileSystem & fs);//TODO
+	void execute(FileSystem & fs);
 	string toString();
 };
 
@@ -45,7 +47,7 @@ class MkdirCommand : public BaseCommand {
 private:
 public:
 	MkdirCommand(string args);
-	void execute(FileSystem & fs);//TODO
+	void execute(FileSystem & fs);
 	string toString();
     Directory* makenewdir(string name, Directory *parent);
 };
@@ -57,7 +59,7 @@ public:
 	void execute(FileSystem & fs);//TODO
 	string toString();
 };
-/*
+
 class CpCommand : public BaseCommand {
 private:
 public:
@@ -107,7 +109,7 @@ public:
 	void execute(FileSystem & fs);
 	string toString();
 };
-*/
+
 class ErrorCommand : public BaseCommand {
 private:
 public:
@@ -115,7 +117,7 @@ public:
 	void execute(FileSystem & fs);
 	string toString();
 };
-/*
+
 class ExecCommand : public BaseCommand {
 private:
 	const vector<BaseCommand *> & history;
@@ -124,6 +126,6 @@ public:
 	void execute(FileSystem & fs);
 	string toString();
 };
-*/
+
 
 #endif

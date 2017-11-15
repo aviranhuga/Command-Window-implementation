@@ -96,6 +96,9 @@
 		<Unit filename="/home/aviran/CLionProjects/Ass1/include/Files.h">
 			<Option target="Ass1"/>
 		</Unit>
+		<Unit filename="/home/aviran/CLionProjects/Ass1/include/GlobalVariables.h">
+			<Option target="Ass1"/>
+		</Unit>
 		<Unit filename="/home/aviran/CLionProjects/Ass1/src/BaseCommand.cpp">
 			<Option target="Ass1"/>
 		</Unit>
@@ -103,6 +106,9 @@
 			<Option target="Ass1"/>
 		</Unit>
 		<Unit filename="/home/aviran/CLionProjects/Ass1/src/CdCommand.cpp">
+			<Option target="Ass1"/>
+		</Unit>
+		<Unit filename="/home/aviran/CLionProjects/Ass1/src/CpCommand.cpp">
 			<Option target="Ass1"/>
 		</Unit>
 		<Unit filename="/home/aviran/CLionProjects/Ass1/src/Directory.cpp">
@@ -114,22 +120,43 @@
 		<Unit filename="/home/aviran/CLionProjects/Ass1/src/ErrorCommand.cpp">
 			<Option target="Ass1"/>
 		</Unit>
+		<Unit filename="/home/aviran/CLionProjects/Ass1/src/ExecCommand.cpp">
+			<Option target="Ass1"/>
+		</Unit>
 		<Unit filename="/home/aviran/CLionProjects/Ass1/src/File.cpp">
 			<Option target="Ass1"/>
 		</Unit>
 		<Unit filename="/home/aviran/CLionProjects/Ass1/src/FileSystem.cpp">
 			<Option target="Ass1"/>
 		</Unit>
+		<Unit filename="/home/aviran/CLionProjects/Ass1/src/HistoryCommand.cpp">
+			<Option target="Ass1"/>
+		</Unit>
 		<Unit filename="/home/aviran/CLionProjects/Ass1/src/LsCommand.cpp">
+			<Option target="Ass1"/>
+		</Unit>
+		<Unit filename="/home/aviran/CLionProjects/Ass1/src/Main.cpp">
 			<Option target="Ass1"/>
 		</Unit>
 		<Unit filename="/home/aviran/CLionProjects/Ass1/src/MkdirCommand.cpp">
 			<Option target="Ass1"/>
 		</Unit>
+		<Unit filename="/home/aviran/CLionProjects/Ass1/src/MkfileCommand.cpp">
+			<Option target="Ass1"/>
+		</Unit>
+		<Unit filename="/home/aviran/CLionProjects/Ass1/src/MvCommand.cpp">
+			<Option target="Ass1"/>
+		</Unit>
 		<Unit filename="/home/aviran/CLionProjects/Ass1/src/PwdCommand.cpp">
 			<Option target="Ass1"/>
 		</Unit>
-		<Unit filename="/home/aviran/CLionProjects/Ass1/src/testMain.cpp">
+		<Unit filename="/home/aviran/CLionProjects/Ass1/src/RenameCommand.cpp">
+			<Option target="Ass1"/>
+		</Unit>
+		<Unit filename="/home/aviran/CLionProjects/Ass1/src/RmCommand.cpp">
+			<Option target="Ass1"/>
+		</Unit>
+		<Unit filename="/home/aviran/CLionProjects/Ass1/src/VerboseCommand.cpp">
 			<Option target="Ass1"/>
 		</Unit>
 		<Unit filename="/home/aviran/CLionProjects/Ass1/CMakeLists.txt">

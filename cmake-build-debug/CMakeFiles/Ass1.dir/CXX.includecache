@@ -34,6 +34,8 @@ vector
 iostream
 -
 
+/home/aviran/CLionProjects/Ass1/include/GlobalVariables.h
+
 /home/aviran/CLionProjects/Ass1/src/BaseCommand.cpp
 ../include/Commands.h
 /home/aviran/CLionProjects/Ass1/include/Commands.h
@@ -43,6 +45,10 @@ iostream
 /home/aviran/CLionProjects/Ass1/include/Files.h
 
 /home/aviran/CLionProjects/Ass1/src/CdCommand.cpp
+../include/Commands.h
+/home/aviran/CLionProjects/Ass1/include/Commands.h
+
+/home/aviran/CLionProjects/Ass1/src/CpCommand.cpp
 ../include/Commands.h
 /home/aviran/CLionProjects/Ass1/include/Commands.h
 
@@ -58,6 +64,12 @@ iostream
 ../include/Commands.h
 /home/aviran/CLionProjects/Ass1/include/Commands.h
 
+/home/aviran/CLionProjects/Ass1/src/ExecCommand.cpp
+../include/Commands.h
+/home/aviran/CLionProjects/Ass1/include/Commands.h
+cmath
+-
+
 /home/aviran/CLionProjects/Ass1/src/File.cpp
 ../include/Files.h
 /home/aviran/CLionProjects/Ass1/include/Files.h
@@ -66,11 +78,29 @@ iostream
 ../include/FileSystem.h
 /home/aviran/CLionProjects/Ass1/include/FileSystem.h
 
+/home/aviran/CLionProjects/Ass1/src/HistoryCommand.cpp
+../include/Commands.h
+/home/aviran/CLionProjects/Ass1/include/Commands.h
+
 /home/aviran/CLionProjects/Ass1/src/LsCommand.cpp
 ../include/Commands.h
 /home/aviran/CLionProjects/Ass1/include/Commands.h
 
+/home/aviran/CLionProjects/Ass1/src/Main.cpp
+../include/Environment.h
+/home/aviran/CLionProjects/Ass1/include/Environment.h
+
 /home/aviran/CLionProjects/Ass1/src/MkdirCommand.cpp
+../include/Commands.h
+/home/aviran/CLionProjects/Ass1/include/Commands.h
+
+/home/aviran/CLionProjects/Ass1/src/MkfileCommand.cpp
+../include/Commands.h
+/home/aviran/CLionProjects/Ass1/include/Commands.h
+cmath
+-
+
+/home/aviran/CLionProjects/Ass1/src/MvCommand.cpp
 ../include/Commands.h
 /home/aviran/CLionProjects/Ass1/include/Commands.h
 
@@ -78,11 +108,17 @@ iostream
 ../include/Commands.h
 /home/aviran/CLionProjects/Ass1/include/Commands.h
 
-/home/aviran/CLionProjects/Ass1/src/testMain.cpp
-../include/Files.h
-/home/aviran/CLionProjects/Ass1/include/Files.h
-../include/Environment.h
-/home/aviran/CLionProjects/Ass1/include/Environment.h
-iostream
--
+/home/aviran/CLionProjects/Ass1/src/RenameCommand.cpp
+../include/Commands.h
+/home/aviran/CLionProjects/Ass1/include/Commands.h
+
+/home/aviran/CLionProjects/Ass1/src/RmCommand.cpp
+../include/Commands.h
+/home/aviran/CLionProjects/Ass1/include/Commands.h
+
+/home/aviran/CLionProjects/Ass1/src/VerboseCommand.cpp
+../include/Commands.h
+/home/aviran/CLionProjects/Ass1/include/Commands.h
+../include/GlobalVariables.h
+/home/aviran/CLionProjects/Ass1/include/GlobalVariables.h
 
