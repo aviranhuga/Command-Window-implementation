@@ -5,8 +5,7 @@
 #include "../include/Files.h"
 #include "../include/GlobalVariables.h"
 
-Directory::Directory(string name, Directory *parent):
-        BaseFile(name),parent(parent) {}
+Directory::Directory(string name, Directory *parent):BaseFile(name),children(),parent(parent){}
 
 Directory* Directory::getParent() const {
     return parent;
@@ -24,8 +23,9 @@ void Directory::removeFile(string name) {
     if ( !(children.empty()) ){ // if its not empty
         bool found=false;
         vector<BaseFile*>::iterator it = children.begin();// iterator to first element
-        for(; it!=children.end() & found==false ; it++){
+        for(; (it!=children.end()) & (found==false) ; it++){
             if( ((*it)->getName().compare(name))==0 ){
+                delete *it;
                 children.erase(it);
                 found=true;
             }//end of if
@@ -36,7 +36,7 @@ void Directory::removeFile(string name) {
 void Directory::removeFile(BaseFile *file) {
         bool found=false;
         vector<BaseFile*>::iterator it = children.begin();// iterator to first element
-        for(; it != children.end() & found == false ; it++){
+        for(; (it != children.end()) & (found == false) ; it++){
             if( (*it) == file ){
                 delete *it;
                 children.erase(it);
@@ -72,7 +72,7 @@ void Directory::sortByName() {
 bool Directory::BiggerString(string a, string b) {
     unsigned long asize=a.size();
     unsigned long bsize=b.size();
-    int i=0;
+    unsigned int i=0;
     while(true){
         if(i == asize)
             return false; //a dont have another char, so b is bigger
@@ -153,7 +153,7 @@ Directory::~Directory() { //Destructor
     BaseFile *pd = nullptr;
     vector<BaseFile *> vct = getChildren();
     if (!vct.empty())//not empty
-        for (int i = 0; i < vct.size(); i++) {
+        for (unsigned int i = 0; i < vct.size(); i++) {
                 pd = vct[i];
                 delete pd;
             }
@@ -161,16 +161,13 @@ Directory::~Directory() { //Destructor
 }
 
 //Copy Constructor
-Directory::Directory(const Directory &other):BaseFile(other.getName()) {
-
-    this->setParent(other.getParent());//same parent
-
+Directory::Directory(const Directory &other):BaseFile(other.getName()),children(),parent(other.getParent()) {
     Directory *tempDIR = nullptr;
     File *tempFILE = nullptr;
 
     vector<BaseFile *> vct = other.children;
     if (!vct.empty())//not empty
-        for (int i = 0; i < vct.size(); i++) {
+        for (unsigned int i = 0; i < vct.size(); i++) {
             if(vct[i]->directoryType()){//he's a directory
                 tempDIR = new Directory(*(Directory *)vct[i]);
                 this->addFile(tempDIR);
@@ -191,7 +188,7 @@ Directory& Directory::operator=(const Directory &rhs) {
     bool found=false;
     if(this->getParent() != nullptr) {
         vector<BaseFile *>::iterator it = this->getParent()->children.begin();// iterator to first element
-        for (; it != children.end() & found == false; it++) {
+        for (; (it != children.end()) & (found == false); it++) {
             if ((*it) == this) {
                 children.erase(it);
                 found = true;
@@ -202,6 +199,7 @@ Directory& Directory::operator=(const Directory &rhs) {
     this->children = rhs.children;
 
     if (verbose==1 || verbose==3)cout << "Directory& operator=(const Directory& rhs)" << endl;
+    return *this;
 }
 
 Directory& Directory::operator=(Directory &&rhs) {
@@ -213,7 +211,7 @@ Directory& Directory::operator=(Directory &&rhs) {
     bool found=false;
     if(this->getParent() != nullptr) {
         vector<BaseFile *>::iterator it = this->getParent()->children.begin();// iterator to first element
-        for (; it != children.end() & found == false; it++) {
+        for (; (it != children.end()) & (found == false); it++) {
             if ((*it) == this) {
                 children.erase(it);
                 found = true;
@@ -221,15 +219,15 @@ Directory& Directory::operator=(Directory &&rhs) {
         }
     }
     //set new children
+    this->children.clear();
     this->children = rhs.children;
 
     if (verbose==1 || verbose==3)cout << "Directory& operator=(Directory&& rhs)" << endl;
+    return *this;
 }
 
-Directory::Directory(Directory &&rhs):BaseFile(rhs.getName()) {
+Directory::Directory(Directory &&rhs):BaseFile(rhs.getName()),children(rhs.getChildren()), parent(rhs.getParent()){
 
-    this->setParent(rhs.getParent());//same parent
-    this->children=rhs.getChildren();
     if (verbose==1 || verbose==3)cout << "Directory(Directory&& rhs)" << endl;
 }
 

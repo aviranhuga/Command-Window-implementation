@@ -17,6 +17,7 @@ public:
 	virtual string toString() = 0;
     string fixstring(string str);
     bool Findfile(Directory* dir,string name);
+	virtual ~BaseCommand();
 };
 
 class PwdCommand : public BaseCommand {
@@ -25,6 +26,7 @@ public:
 	PwdCommand(string args);
 	void execute(FileSystem & fs); // Every derived class should implement this function according to the document (pdf)
 	virtual string toString();
+	~PwdCommand();
 };
 
 class CdCommand : public BaseCommand {
@@ -33,6 +35,7 @@ public:
 	CdCommand(string args);
 	void execute(FileSystem & fs);
 	string toString();
+	~CdCommand();
 };
 
 class LsCommand : public BaseCommand {
@@ -41,6 +44,7 @@ public:
 	LsCommand(string args);
 	void execute(FileSystem & fs);
 	string toString();
+	~LsCommand();
 };
 
 class MkdirCommand : public BaseCommand {
@@ -49,6 +53,7 @@ public:
 	MkdirCommand(string args);
 	void execute(FileSystem & fs);
 	string toString();
+	~MkdirCommand();
 };
 
 class MkfileCommand : public BaseCommand {
@@ -57,6 +62,7 @@ public:
 	MkfileCommand(string args);
 	void execute(FileSystem & fs);
 	string toString();
+	~MkfileCommand();
 };
 
 class CpCommand : public BaseCommand {
@@ -65,6 +71,7 @@ public:
 	CpCommand(string args);
 	void execute(FileSystem & fs);
 	string toString();
+	~CpCommand();
 };
 
 class MvCommand : public BaseCommand {
@@ -73,6 +80,7 @@ public:
 	MvCommand(string args);
 	void execute(FileSystem & fs);
 	string toString();
+	~MvCommand();
 };
 
 class RenameCommand : public BaseCommand {
@@ -81,6 +89,7 @@ public:
 	RenameCommand(string args);
 	void execute(FileSystem & fs);
 	string toString();
+	~RenameCommand();
 };
 
 class RmCommand : public BaseCommand {
@@ -89,6 +98,7 @@ public:
 	RmCommand(string args);
 	void execute(FileSystem & fs);
 	string toString();
+	~RmCommand();
 };
 
 class HistoryCommand : public BaseCommand {
@@ -98,6 +108,7 @@ public:
 	HistoryCommand(string args, const vector<BaseCommand *> & history);
 	void execute(FileSystem & fs);
 	string toString();
+	~HistoryCommand();
 };
 
 
@@ -107,6 +118,7 @@ public:
 	VerboseCommand(string args);
 	void execute(FileSystem & fs);
 	string toString();
+	~VerboseCommand();
 };
 
 class ErrorCommand : public BaseCommand {
@@ -115,6 +127,7 @@ public:
 	ErrorCommand(string args);
 	void execute(FileSystem & fs);
 	string toString();
+	~ErrorCommand();
 };
 
 class ExecCommand : public BaseCommand {
@@ -124,6 +137,7 @@ public:
 	ExecCommand(string args, const vector<BaseCommand *> & history);
 	void execute(FileSystem & fs);
 	string toString();
+	~ExecCommand();
 };
 
 

@@ -29,7 +29,7 @@ void MkfileCommand::execute(FileSystem &fs) {
 
     //get size in int
     int intSIZE = 0;
-    for (int i=0; i<filesize.size() ; i++){
+    for (unsigned int i=0; i<filesize.size() ; i++){
         if (!(48 <= (int)filesize[i] && (int)filesize[i] <= 57)) return;
         intSIZE=intSIZE + ((int)filesize[i]-48)*((int)pow(10,(filesize.size()-1-i)));
     }
@@ -45,14 +45,14 @@ void MkfileCommand::execute(FileSystem &fs) {
 
     vector<BaseFile *> vct = (*temp).getChildren();
     if (!vct.empty())//not empty
-        for (int i=0; i<vct.size() ; i++) {
+        for (unsigned int i=0; i<vct.size() ; i++) {
             if (vct[i]->getName().compare(name) == 0) {//file or dir with the same name
                 cout << "File already exists" << endl;
                 return;
             }
         }
         //Check if the name is legit
-        for(int i=0 ; i<name.size() ; i++) {
+        for(unsigned int i=0 ; i<name.size() ; i++) {
             if (!((97 <= (int) name[i] && (int) name[i] <= 122) || (65 <= (int) name[i] && (int) name[i] <= 90) || (48 <= (int) name[i] && (int) name[i] <= 57)))
                 return;
         }
@@ -62,4 +62,8 @@ void MkfileCommand::execute(FileSystem &fs) {
 
 string MkfileCommand::toString() {
     return "mkfile";
+}
+
+MkfileCommand::~MkfileCommand() {
+
 }

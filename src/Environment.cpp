@@ -6,7 +6,8 @@
 #include "../include/GlobalVariables.h"
 
 
-Environment::Environment() {}
+Environment::Environment():commandsHistory(),fs(){}
+
 
 void Environment::start() {
 
@@ -104,7 +105,7 @@ Environment::~Environment() { //Destructor
     BaseCommand *pd = nullptr;
     vector<BaseCommand *> vct = getHistory();
     if (!vct.empty())//not empty
-        for (int i = 0; i < vct.size(); i++) {
+        for (unsigned int i = 0; i < vct.size(); i++) {
             pd = vct[i];
             delete pd;
         }
@@ -112,10 +113,7 @@ Environment::~Environment() { //Destructor
 }
 
 //Copy Constructor
-Environment::Environment(const Environment &other) {
-
-    this->fs=other.fs;
-    this->commandsHistory = other.getHistory();
+Environment::Environment(const Environment &other):commandsHistory(other.getHistory()),fs(other.fs) {
     if (verbose==1 || verbose==3)cout << "Environment(const Environment& other)" << endl;
 }
 
@@ -124,7 +122,7 @@ Environment& Environment::operator=(const Environment &rhs) {
     this->fs=rhs.fs;
     this->commandsHistory = rhs.getHistory();
     if (verbose==1 || verbose==3)cout << "Environment& operator=(const Environment& rhs)" << endl;
-
+    return *this;
 }
 
 Environment& Environment::operator=(Environment &&rhs) {
@@ -132,13 +130,11 @@ Environment& Environment::operator=(Environment &&rhs) {
     this->fs=rhs.fs;
     this->commandsHistory = rhs.getHistory();
     if (verbose==1 || verbose==3)cout << "Environment& operator=(Environment&& rhs)" << endl;
-
+    return *this;
 }
 
-Environment::Environment(Environment &&rhs) {
+Environment::Environment(Environment &&rhs):commandsHistory(rhs.getHistory()),fs(rhs.fs){
 
-    this->fs=rhs.fs;
-    this->commandsHistory = rhs.getHistory();
     if (verbose==1 || verbose==3)cout << "Environment(Environment&& rhs)" << endl;
 
 }

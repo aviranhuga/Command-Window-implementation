@@ -5,6 +5,7 @@
 #include "../include/Commands.h"
 #include "../include/GlobalVariables.h"
 
+
 VerboseCommand::VerboseCommand(string args):BaseCommand(args) {}
 
 void VerboseCommand::execute(FileSystem &fs) {
@@ -19,4 +20,8 @@ void VerboseCommand::execute(FileSystem &fs) {
 
 string VerboseCommand::toString() {
     return "verbose";
+}
+
+VerboseCommand::~VerboseCommand() {
+
 }

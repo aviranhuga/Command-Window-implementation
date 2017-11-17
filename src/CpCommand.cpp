@@ -63,7 +63,7 @@ void CpCommand::execute(FileSystem &fs) {
     bool foundfile=false;
     vector<BaseFile *> vct = (*tempsrc).getChildren();
     if (!vct.empty())//not empty
-        for (int i=0; i<vct.size() && foundfile==false ; i++) {
+        for (unsigned int i=0; i<vct.size() && foundfile==false ; i++) {
             if (vct[i]->getName().compare(filename) == 0) {//found the file
                 foundfile=true;
                 if(vct[i]->directoryType()){//he's a directory
@@ -86,4 +86,8 @@ void CpCommand::execute(FileSystem &fs) {
 
 string CpCommand::toString() {
     return "cp";
+}
+
+CpCommand::~CpCommand() {
+
 }

@@ -74,7 +74,7 @@ void MvCommand::execute(FileSystem &fs) {
     bool foundfile=false;
     vector<BaseFile *> vct = (*tempsrc).getChildren();
     if (!vct.empty())//not empty
-        for (int i=0; i<vct.size() && foundfile==false ; i++) {
+        for (unsigned int i=0; i<vct.size() && foundfile==false ; i++) {
             if (vct[i]->getName().compare(filename) == 0) {//found the file
                 if (Findfile(tempdest,filename))return;
                 foundfile=true;
@@ -99,4 +99,8 @@ void MvCommand::execute(FileSystem &fs) {
 
 string MvCommand::toString() {
     return "mv";
+}
+
+MvCommand::~MvCommand() {
+
 }

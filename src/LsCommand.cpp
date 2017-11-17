@@ -40,7 +40,7 @@ void LsCommand::execute(FileSystem &fs) {
     else temp->sortByName();
 
     vector<BaseFile *> vct = (*temp).getChildren();
-            for (int i=0; i<vct.size(); i++)
+            for (unsigned int i=0; i<vct.size(); i++)
                 if(vct[i]->directoryType())
                     cout << "DIR" << "\t" << vct[i]->getName() << "\t" << vct[i]->getSize() << endl;
                 else cout << "FILE" << "\t" << vct[i]->getName() << "\t" << vct[i]->getSize() << endl;
@@ -48,4 +48,8 @@ void LsCommand::execute(FileSystem &fs) {
 
 string LsCommand::toString(){
     return "ls";
+}
+
+LsCommand::~LsCommand() {
+
 }

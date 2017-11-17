@@ -4,10 +4,10 @@ all: fs
 
 # Tool invocations
 fs: bin/BaseCommand.o bin/BaseFile.o bin/CdCommand.o bin/CpCommand.o bin/Directory.o bin/Environment.o bin/ErrorCommand.o bin/ExecCommand.o bin/File.o bin/FileSystem.o bin/HistoryCommand.o bin/LsCommand.o bin/Main.o bin/MkdirCommand.o bin/MkfileCommand.o bin/MvCommand.o bin/PwdCommand.o bin/RenameCommand.o bin/RmCommand.o bin/VerboseCommand.o
-	@echo 'Building target: hello'
+	@echo 'Building target: fs'
 	@echo 'Invoking: C++ Linker'
 	g++ -o bin/fs bin/BaseCommand.o bin/BaseFile.o bin/CdCommand.o bin/CpCommand.o bin/Directory.o bin/Environment.o bin/ErrorCommand.o bin/ExecCommand.o bin/File.o bin/FileSystem.o bin/HistoryCommand.o bin/LsCommand.o bin/Main.o bin/MkdirCommand.o bin/MkfileCommand.o bin/MvCommand.o bin/PwdCommand.o bin/RenameCommand.o bin/RmCommand.o bin/VerboseCommand.o
-	@echo 'Finished building target: hello'
+	@echo 'Finished building target: fs'
 	@echo ' '
 # Depends on the source and header files
 bin/FileSystem.o: src/FileSystem.cpp
@@ -46,7 +46,7 @@ bin/ExecCommand.o: src/ExecCommand.cpp
 	g++ -g -Wall -Weffc++ -std=c++11 -c -Iinclude -o bin/ExecCommand.o src/ExecCommand.cpp
 
 # Depends on the source and header files
-bin/File.o: bin/File.o
+bin/File.o: src/File.cpp
 	g++ -g -Wall -Weffc++ -std=c++11 -c -Iinclude -o bin/File.o src/File.cpp
 
 # Depends on the source and header files

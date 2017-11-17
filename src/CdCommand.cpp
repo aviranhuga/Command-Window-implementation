@@ -25,3 +25,7 @@ void CdCommand::execute(FileSystem &fs) {
 string CdCommand::toString() {
     return "cd";
 }
+
+CdCommand::~CdCommand() {
+
+}

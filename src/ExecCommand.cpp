@@ -14,9 +14,9 @@ void ExecCommand::execute(FileSystem &fs) {
     str=fixstring(str);
 
     //get size in int
-    int intSIZE = 0;
-    for (int i=0; i<str.size() ; i++){
-        if (!(48 <= (int)str[i] && (int)str[i] <= 57)){
+    unsigned int intSIZE = 0;
+    for (unsigned int i=0; i<str.size() ; i++){
+        if (!((48 <= (int)str[i]) && ((int)str[i] <= 57))){
             cout << "Command not found" << endl;
             return;
         }
@@ -84,4 +84,8 @@ void ExecCommand::execute(FileSystem &fs) {
 
 string ExecCommand::toString() {
     return "exec";
+}
+
+ExecCommand::~ExecCommand() {
+
 }

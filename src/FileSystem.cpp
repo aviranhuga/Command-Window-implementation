@@ -4,10 +4,8 @@
 #include "../include/FileSystem.h"
 #include "../include/GlobalVariables.h"
 
-FileSystem::FileSystem() {
-    Directory* Root = new Directory("Root", nullptr);
-    rootDirectory = Root;
-    workingDirectory = Root;
+FileSystem::FileSystem():rootDirectory(new Directory("Root", nullptr)),workingDirectory(nullptr){
+    workingDirectory = this->rootDirectory;
 }
 
 Directory& FileSystem::getRootDirectory() const {
@@ -33,7 +31,7 @@ FileSystem::~FileSystem() { //Destructor
 }
 
 //Copy Constructor
-FileSystem::FileSystem(const FileSystem &other) {
+FileSystem::FileSystem(const FileSystem &other):rootDirectory(nullptr),workingDirectory(nullptr) {
     
     Directory* temp = &other.getRootDirectory();
     rootDirectory = new Directory(*temp);
@@ -49,6 +47,7 @@ FileSystem& FileSystem::operator=(const FileSystem &rhs) {
     workingDirectory = &rhs.getWorkingDirectory();
 
     if (verbose==1 || verbose==3)cout << "FileSystem& operator=(const FileSystem& rhs)" << endl;
+    return *this;
 }
 
 FileSystem& FileSystem::operator=(FileSystem &&rhs) {
@@ -57,12 +56,10 @@ FileSystem& FileSystem::operator=(FileSystem &&rhs) {
     workingDirectory = &rhs.getWorkingDirectory();
 
     if (verbose==1 || verbose==3)cout << "FileSystem& operator=(FileSystem&& rhs)" << endl;
+    return *this;
 }
 
-FileSystem::FileSystem(FileSystem &&rhs) {
-
-    rootDirectory = &rhs.getRootDirectory();
-    workingDirectory = &rhs.getWorkingDirectory();
+FileSystem::FileSystem(FileSystem &&rhs):rootDirectory(&rhs.getRootDirectory()),workingDirectory(&rhs.getWorkingDirectory()) {
 
     if (verbose==1 || verbose==3)cout << "FileSystem(FileSystem&& rhs)" << endl;
 }

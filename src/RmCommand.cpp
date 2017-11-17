@@ -53,7 +53,7 @@ void RmCommand::execute(FileSystem &fs) {
     bool foundfile=false;
     vector<BaseFile *> vct = (*tempsrc).getChildren();
     if (!vct.empty())//not empty
-        for (int i=0; i<vct.size() && foundfile==false ; i++) {
+        for (unsigned int i=0; i<vct.size() && foundfile==false ; i++) {
             if (vct[i]->getName().compare(filename) == 0) {//found the file
                 foundfile=true;
                 tempsrc->removeFile(vct[i]);
@@ -69,4 +69,8 @@ void RmCommand::execute(FileSystem &fs) {
 
 string RmCommand::toString() {
     return "rm";
+}
+
+RmCommand::~RmCommand() {
+
 }

@@ -52,12 +52,12 @@ void RenameCommand::execute(FileSystem &fs) {
     bool foundfile=false;
     vector<BaseFile *> vct = (*tempsrc).getChildren();
     if (!vct.empty())//not empty
-        for (int i=0; i<vct.size() && foundfile==false ; i++) {
+        for (unsigned int i=0; i<vct.size() && foundfile==false ; i++) {
             if (vct[i]->getName().compare(oldname) == 0) {//found the file
                 if (Findfile(tempsrc,newname))return;
                 foundfile=true;
                 //check if the name is legit
-                for(int i=0 ; i<newname.size() ; i++) {
+                for(unsigned int i=0 ; i<newname.size() ; i++) {
                     if (!((97 <= (int) newname[i] && (int) newname[i] <= 122) || (65 <= (int) newname[i] && (int) newname[i] <= 90) || (48 <= (int) newname[i] && (int) newname[i] <= 57)))
                         return;
                 }
@@ -75,4 +75,8 @@ void RenameCommand::execute(FileSystem &fs) {
 
 string RenameCommand::toString() {
     return "rename";
+}
+
+RenameCommand::~RenameCommand() {
+
 }
