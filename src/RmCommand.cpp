@@ -19,13 +19,13 @@ void RmCommand::execute(FileSystem &fs) {
     Directory *tempsrc = nullptr;
 
     if (args.compare("/")==0){
-        cout << "Can't remove directory" << endl;
+        cout << "Can’t remove directory" << endl;
         return;
     }
     tempsrc = &fs.getWorkingDirectory();
     while (tempsrc->getParent()!= nullptr){
         if (args.compare(tempsrc->getAbsolutePath())==0) {
-            cout << "Can't remove directory" << endl;
+            cout << "Can’t remove directory" << endl;
             return;
         }
         tempsrc=tempsrc->getParent();

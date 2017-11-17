@@ -3,6 +3,7 @@
 //
 
 #include "../include/Environment.h"
+#include "../include/GlobalVariables.h"
 
 
 Environment::Environment() {}
@@ -17,6 +18,8 @@ void Environment::start() {
     while(exit) { // run until user type exit
         cout << fs.getWorkingDirectory().getAbsolutePath() << ">"; // print path
         getline(cin,currentline); // get line from user
+        if(currentline.compare("exit")==0)return;
+        if (verbose==2 || verbose==3) cout << currentline << endl; // verbose
         currentline=DeleteSpaces(currentline); // delete the spaces
         found = currentline.find(" "); // find the first " "
         if(found!=string::npos){// Command with args
@@ -27,7 +30,7 @@ void Environment::start() {
            argsString = "";
         }
         BaseCommand* currentcommand = findcommand(commandString,argsString);
-        currentcommand->execute(fs);
+        currentcommand->execute(getFileSystem());
         addToHistory(currentcommand);
     }
 }
@@ -70,8 +73,11 @@ BaseCommand* Environment::findcommand(string command, string args) {
        ptr = new HistoryCommand(args,this->getHistory());
    else  if (command.compare("exec")==0)
        ptr = new ExecCommand(args,this->getHistory());
+   else  if (command.compare("verbose")==0)
+       ptr = new VerboseCommand(args);
 
-    else ptr = new ErrorCommand(command + " " + args);
+
+    else ptr = new ErrorCommand(command + " " +args);
     return ptr;
 }
 
@@ -90,20 +96,50 @@ string Environment::DeleteSpaces(string str) {
     return str;
 }
 
+//............................
+//.......RULE OF 5............
+//............................
 
+Environment::~Environment() { //Destructor
+    BaseCommand *pd = nullptr;
+    vector<BaseCommand *> vct = getHistory();
+    if (!vct.empty())//not empty
+        for (int i = 0; i < vct.size(); i++) {
+            pd = vct[i];
+            delete pd;
+        }
+    if (verbose==1 || verbose==3)cout << "~Environment()" << endl;
+}
 
+//Copy Constructor
+Environment::Environment(const Environment &other) {
 
+    this->fs=other.fs;
+    this->commandsHistory = other.getHistory();
+    if (verbose==1 || verbose==3)cout << "Environment(const Environment& other)" << endl;
+}
 
+Environment& Environment::operator=(const Environment &rhs) {
 
+    this->fs=rhs.fs;
+    this->commandsHistory = rhs.getHistory();
+    if (verbose==1 || verbose==3)cout << "Environment& operator=(const Environment& rhs)" << endl;
 
+}
 
+Environment& Environment::operator=(Environment &&rhs) {
 
+    this->fs=rhs.fs;
+    this->commandsHistory = rhs.getHistory();
+    if (verbose==1 || verbose==3)cout << "Environment& operator=(Environment&& rhs)" << endl;
 
+}
 
+Environment::Environment(Environment &&rhs) {
 
+    this->fs=rhs.fs;
+    this->commandsHistory = rhs.getHistory();
+    if (verbose==1 || verbose==3)cout << "Environment(Environment&& rhs)" << endl;
 
-
-
-
-
+}
 

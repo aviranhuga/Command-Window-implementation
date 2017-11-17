@@ -26,6 +26,7 @@ Directory* BaseCommand::findpath(FileSystem & fs, string path) {
             found = path.find('/');
             if (found != string::npos) {// found the '/' char
                 nextdir = path.substr(0, found);
+                if (path[path.size()-1]=='/') return nullptr;
                 path = path.substr(found + 1);
             } else {// last dir
                 nextdir = path;
@@ -33,7 +34,7 @@ Directory* BaseCommand::findpath(FileSystem & fs, string path) {
                 }
 
             if(nextdir.compare("..")==0) {
-                if (temp->getParent()== nullptr) return nullptr;
+                if (!(temp->getParent()== nullptr))
                 temp = temp->getParent();
             }
             else {

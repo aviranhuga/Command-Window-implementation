@@ -1,3 +1,0 @@
-/home/aviran/CLionProjects/Ass1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/aviran/CLionProjects/Ass1/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/aviran/CLionProjects/Ass1/cmake-build-debug/CMakeFiles/Ass1.dir

@@ -7,7 +7,13 @@
 ErrorCommand::ErrorCommand(string args):BaseCommand(args) {}
 
 void ErrorCommand::execute(FileSystem &fs) {
-    cout << getArgs() << ":Unknown command" << endl;
+    string str = this->getArgs();
+    size_t found;
+    found = str.find(" "); // find the first " "
+    if (found != string::npos) {// Command with args
+        str = str.substr(0,found);
+    }
+    cout << str << ": Unknown command" << endl;
 }
 
 string ErrorCommand::toString() {

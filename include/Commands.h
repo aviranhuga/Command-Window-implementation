@@ -49,14 +49,13 @@ public:
 	MkdirCommand(string args);
 	void execute(FileSystem & fs);
 	string toString();
-    Directory* makenewdir(string name, Directory *parent);
 };
 
 class MkfileCommand : public BaseCommand {
 private:
 public:
 	MkfileCommand(string args);
-	void execute(FileSystem & fs);//TODO
+	void execute(FileSystem & fs);
 	string toString();
 };
 

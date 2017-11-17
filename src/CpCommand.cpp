@@ -57,12 +57,14 @@ void CpCommand::execute(FileSystem &fs) {
         tempsrc = &fs.getWorkingDirectory();
         filename = source;
     }
+
+    if (Findfile(tempdest,filename))return;
+
     bool foundfile=false;
     vector<BaseFile *> vct = (*tempsrc).getChildren();
     if (!vct.empty())//not empty
         for (int i=0; i<vct.size() && foundfile==false ; i++) {
             if (vct[i]->getName().compare(filename) == 0) {//found the file
-                if (Findfile(tempsrc,filename))return;
                 foundfile=true;
                 if(vct[i]->directoryType()){//he's a directory
                     tempDIR = new Directory(*(Directory *)vct[i]);

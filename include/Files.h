@@ -16,7 +16,7 @@ public:
 	string getName() const;
 	void setName(string newName);
 	virtual int getSize() = 0;
-    virtual ~BaseFile()=0;
+    virtual ~BaseFile();
 	virtual bool directoryType() = 0;
 };
 
@@ -29,7 +29,6 @@ public:
 	int getSize(); // Return the size of the file
 	bool directoryType();
     ~File();
-	File(const File& other);//copy constuctor
 };
 
 class Directory : public BaseFile {
@@ -54,6 +53,9 @@ public:
 
     ~Directory();//Destructor
     Directory(const Directory& other);//copy constuctor
+    Directory& operator=(const Directory& rhs); // Assinment operator
+    Directory& operator=(Directory&& rhs);//Move Assignment operator
+    Directory(Directory&& rhs);//Move constructor
 
 };
 

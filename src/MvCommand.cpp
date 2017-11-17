@@ -48,7 +48,7 @@ void MvCommand::execute(FileSystem &fs) {
     Directory *temp=&fs.getWorkingDirectory();
     while (temp->getParent()!= nullptr){
         if (source.compare(temp->getAbsolutePath())==0) {
-            cout << "Can't move directory" << endl;
+            cout << "Can’t move directory" << endl;
             return;
         }
         temp=temp->getParent();
@@ -76,7 +76,7 @@ void MvCommand::execute(FileSystem &fs) {
     if (!vct.empty())//not empty
         for (int i=0; i<vct.size() && foundfile==false ; i++) {
             if (vct[i]->getName().compare(filename) == 0) {//found the file
-                if (Findfile(tempsrc,filename))return;
+                if (Findfile(tempdest,filename))return;
                 foundfile=true;
                 if(vct[i]->directoryType()){//he's a directory
                     tempDIR = new Directory(*(Directory *)vct[i]);

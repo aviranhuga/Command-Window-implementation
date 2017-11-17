@@ -38,7 +38,10 @@ void MkdirCommand::execute(FileSystem &fs) {
         vector<BaseFile *> vct = (*temp).getChildren();
         if (!vct.empty())
         for (int i=0; i<vct.size() & founddir==false; i++) {
-            if (vct[i]->getName().compare(nextdir) == 0 && !vct[i]->directoryType())return;
+            if (vct[i]->getName().compare(nextdir) == 0 && !vct[i]->directoryType()){
+                cout << "The directory already exists"<< endl;
+                return;
+            }
             if (vct[i]->getName().compare(nextdir) == 0 && vct[i]->directoryType()) {
                 temp = (Directory *) (vct[i]);
                 founddir = true;
@@ -50,7 +53,7 @@ void MkdirCommand::execute(FileSystem &fs) {
                   if (!((97 <= (int) nextdir[i] && (int) nextdir[i] <= 122) || (65 <= (int) nextdir[i] && (int) nextdir[i] <= 90) || (48 <= (int) nextdir[i] && (int) nextdir[i] <= 57)))
                       return;
               }
-              newdir = makenewdir(nextdir,temp);
+              newdir = new Directory(nextdir,temp);
               temp->addFile(newdir);
               temp = newdir;
           }
@@ -60,8 +63,4 @@ void MkdirCommand::execute(FileSystem &fs) {
 
 string MkdirCommand::toString() {
     return "mkdir";
-}
-
-Directory* MkdirCommand::makenewdir(string name, Directory *parent) {
-    return new Directory(name,parent);
 }

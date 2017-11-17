@@ -5,12 +5,12 @@
 #include "../include/Commands.h"
 #include "../include/GlobalVariables.h"
 
-VerboseCommand::VerboseCommand(string args)BaseCommand(args) {}
+VerboseCommand::VerboseCommand(string args):BaseCommand(args) {}
 
 void VerboseCommand::execute(FileSystem &fs) {
     string args=getArgs();
     args=fixstring(args);
-    if(args.compare("1")==0) verbose=1;
+    if(args.compare("0")==0) verbose=0;
     else if(args.compare("1")==0) verbose=1;
     else if(args.compare("2")==0) verbose=2;
     else if(args.compare("3")==0) verbose=3;

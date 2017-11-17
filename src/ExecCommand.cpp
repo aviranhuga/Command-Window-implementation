@@ -23,37 +23,60 @@ void ExecCommand::execute(FileSystem &fs) {
         intSIZE=intSIZE + ((int)str[i]-48)*((int)pow(10,(str.size()-1-i)));
     }
 
-    if(intSIZE < history.size()){
+    if(intSIZE < history.size()) {
         string command = history[intSIZE]->toString();
         string args = history[intSIZE]->getArgs();
-        command=fixstring(command);
-        args=fixstring(args);
-        BaseCommand* ptr = nullptr;
-        if (command.compare("pwd")==0)
-            ptr = new PwdCommand(args);
-        else  if (command.compare("ls")==0)
-            ptr = new LsCommand(args);
-        else  if (command.compare("cd")==0)
-            ptr = new CdCommand(args);
-        else  if (command.compare("mkdir")==0)
-            ptr = new MkdirCommand(args);
-        else  if (command.compare("mkfile")==0)
-            ptr = new MkfileCommand(args);
-        else  if (command.compare("cp")==0)
-            ptr = new CpCommand(args);
-        else  if (command.compare("rename")==0)
-            ptr = new RenameCommand(args);
-        else  if (command.compare("rm")==0)
-            ptr = new RmCommand(args);
-        else  if (command.compare("mv")==0)
-            ptr = new MvCommand(args);
-        else  if (command.compare("history")==0)
-            ptr = new HistoryCommand(args,history);
-        else  if (command.compare("exec")==0)
-            ptr = new ExecCommand(args,history);
+        command = fixstring(command);
+        args = fixstring(args);
 
-        else ptr = new ErrorCommand(command + " " + args);
-        ptr->execute(fs);
+        if (command.compare("pwd") == 0) {
+            PwdCommand ptr(args);
+            ptr.execute(fs);
+        } else if (command.compare("ls") == 0) {
+            LsCommand ptr(args);
+            ptr.execute(fs);
+        } else if (command.compare("cd") == 0) {
+            CdCommand ptr(args);
+            ptr.execute(fs);
+        } else if (command.compare("mkdir") == 0) {
+            MkdirCommand ptr(args);
+            ptr.execute(fs);
+        } else if (command.compare("mkfile") == 0){
+            MkfileCommand ptr(args);
+            ptr.execute(fs);
+        }
+        else if (command.compare("cp") == 0) {
+            CpCommand ptr(args);
+            ptr.execute(fs);
+        }
+        else if (command.compare("rename") == 0) {
+            RenameCommand ptr(args);
+            ptr.execute(fs);
+        }
+        else if (command.compare("rm") == 0) {
+            RmCommand ptr(args);
+            ptr.execute(fs);
+        }
+        else if (command.compare("mv") == 0) {
+            MvCommand ptr(args);
+            ptr.execute(fs);
+        }
+        else if (command.compare("history") == 0) {
+            HistoryCommand ptr(args, history);
+            ptr.execute(fs);
+        }
+        else if (command.compare("exec") == 0) {
+            ExecCommand ptr(args, history);
+            ptr.execute(fs);
+        }
+        else if (command.compare("verbose") == 0) {
+            VerboseCommand ptr(args);
+            ptr.execute(fs);
+        }else {
+            ErrorCommand ptr(command + " " + args);
+            ptr.execute(fs);
+        }
+
     }else cout << "Command not found" << endl;
 
     return;
