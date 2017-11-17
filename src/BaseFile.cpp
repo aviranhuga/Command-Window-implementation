@@ -15,3 +15,6 @@ string BaseFile::getName() const  {
 void BaseFile::setName(string newName) {
     name = newName;
 }
+
+BaseFile::~BaseFile()=default;
+

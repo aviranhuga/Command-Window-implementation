@@ -123,114 +123,6 @@ Ass1/fast:
 	$(MAKE) -f CMakeFiles/Ass1.dir/build.make CMakeFiles/Ass1.dir/build
 .PHONY : Ass1/fast
 
-src/BaseFile.o: src/BaseFile.cpp.o
-
-.PHONY : src/BaseFile.o
-
-# target to build an object file
-src/BaseFile.cpp.o:
-	$(MAKE) -f CMakeFiles/Ass1.dir/build.make CMakeFiles/Ass1.dir/src/BaseFile.cpp.o
-.PHONY : src/BaseFile.cpp.o
-
-src/BaseFile.i: src/BaseFile.cpp.i
-
-.PHONY : src/BaseFile.i
-
-# target to preprocess a source file
-src/BaseFile.cpp.i:
-	$(MAKE) -f CMakeFiles/Ass1.dir/build.make CMakeFiles/Ass1.dir/src/BaseFile.cpp.i
-.PHONY : src/BaseFile.cpp.i
-
-src/BaseFile.s: src/BaseFile.cpp.s
-
-.PHONY : src/BaseFile.s
-
-# target to generate assembly for a file
-src/BaseFile.cpp.s:
-	$(MAKE) -f CMakeFiles/Ass1.dir/build.make CMakeFiles/Ass1.dir/src/BaseFile.cpp.s
-.PHONY : src/BaseFile.cpp.s
-
-src/Directory.o: src/Directory.cpp.o
-
-.PHONY : src/Directory.o
-
-# target to build an object file
-src/Directory.cpp.o:
-	$(MAKE) -f CMakeFiles/Ass1.dir/build.make CMakeFiles/Ass1.dir/src/Directory.cpp.o
-.PHONY : src/Directory.cpp.o
-
-src/Directory.i: src/Directory.cpp.i
-
-.PHONY : src/Directory.i
-
-# target to preprocess a source file
-src/Directory.cpp.i:
-	$(MAKE) -f CMakeFiles/Ass1.dir/build.make CMakeFiles/Ass1.dir/src/Directory.cpp.i
-.PHONY : src/Directory.cpp.i
-
-src/Directory.s: src/Directory.cpp.s
-
-.PHONY : src/Directory.s
-
-# target to generate assembly for a file
-src/Directory.cpp.s:
-	$(MAKE) -f CMakeFiles/Ass1.dir/build.make CMakeFiles/Ass1.dir/src/Directory.cpp.s
-.PHONY : src/Directory.cpp.s
-
-src/File.o: src/File.cpp.o
-
-.PHONY : src/File.o
-
-# target to build an object file
-src/File.cpp.o:
-	$(MAKE) -f CMakeFiles/Ass1.dir/build.make CMakeFiles/Ass1.dir/src/File.cpp.o
-.PHONY : src/File.cpp.o
-
-src/File.i: src/File.cpp.i
-
-.PHONY : src/File.i
-
-# target to preprocess a source file
-src/File.cpp.i:
-	$(MAKE) -f CMakeFiles/Ass1.dir/build.make CMakeFiles/Ass1.dir/src/File.cpp.i
-.PHONY : src/File.cpp.i
-
-src/File.s: src/File.cpp.s
-
-.PHONY : src/File.s
-
-# target to generate assembly for a file
-src/File.cpp.s:
-	$(MAKE) -f CMakeFiles/Ass1.dir/build.make CMakeFiles/Ass1.dir/src/File.cpp.s
-.PHONY : src/File.cpp.s
-
-src/testMain.o: src/testMain.cpp.o
-
-.PHONY : src/testMain.o
-
-# target to build an object file
-src/testMain.cpp.o:
-	$(MAKE) -f CMakeFiles/Ass1.dir/build.make CMakeFiles/Ass1.dir/src/testMain.cpp.o
-.PHONY : src/testMain.cpp.o
-
-src/testMain.i: src/testMain.cpp.i
-
-.PHONY : src/testMain.i
-
-# target to preprocess a source file
-src/testMain.cpp.i:
-	$(MAKE) -f CMakeFiles/Ass1.dir/build.make CMakeFiles/Ass1.dir/src/testMain.cpp.i
-.PHONY : src/testMain.cpp.i
-
-src/testMain.s: src/testMain.cpp.s
-
-.PHONY : src/testMain.s
-
-# target to generate assembly for a file
-src/testMain.cpp.s:
-	$(MAKE) -f CMakeFiles/Ass1.dir/build.make CMakeFiles/Ass1.dir/src/testMain.cpp.s
-.PHONY : src/testMain.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -240,18 +132,6 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... Ass1"
-	@echo "... src/BaseFile.o"
-	@echo "... src/BaseFile.i"
-	@echo "... src/BaseFile.s"
-	@echo "... src/Directory.o"
-	@echo "... src/Directory.i"
-	@echo "... src/Directory.s"
-	@echo "... src/File.o"
-	@echo "... src/File.i"
-	@echo "... src/File.s"
-	@echo "... src/testMain.o"
-	@echo "... src/testMain.i"
-	@echo "... src/testMain.s"
 .PHONY : help
 
 

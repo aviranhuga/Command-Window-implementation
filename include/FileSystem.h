@@ -15,6 +15,11 @@ public:
 	void setWorkingDirectory(Directory *newWorkingDirectory); // Change the working directory of the file system
 
 
+	~FileSystem();//Destructor
+	FileSystem(const FileSystem& other);//copy constuctor
+	FileSystem& operator=(const FileSystem& rhs); // Assinment operator
+	FileSystem& operator=(FileSystem&& rhs);//Move Assignment operator
+	FileSystem(FileSystem&& rhs);//Move constructor
 };
 
 

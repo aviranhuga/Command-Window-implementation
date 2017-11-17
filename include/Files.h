@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
 
 using namespace std;
 
@@ -15,7 +16,8 @@ public:
 	string getName() const;
 	void setName(string newName);
 	virtual int getSize() = 0;
-	
+    virtual ~BaseFile();
+	virtual bool directoryType() = 0;
 };
 
 class File : public BaseFile {
@@ -25,7 +27,8 @@ private:
 public:
 	File(string name, int size); // Constructor
 	int getSize(); // Return the size of the file
-	
+	bool directoryType();
+    ~File();
 };
 
 class Directory : public BaseFile {
@@ -45,8 +48,15 @@ public:
 	vector<BaseFile*> getChildren(); // Return children
 	int getSize(); // Return the size of the directory (recursively)
 	string getAbsolutePath();  //Return the path from the root to this
-
     bool BiggerString(string a,string b); //Return true if a is bigger then b
+	bool directoryType();
+
+    ~Directory();//Destructor
+    Directory(const Directory& other);//copy constuctor
+    Directory& operator=(const Directory& rhs); // Assinment operator
+    Directory& operator=(Directory&& rhs);//Move Assignment operator
+    Directory(Directory&& rhs);//Move constructor
+
 };
 
 #endif

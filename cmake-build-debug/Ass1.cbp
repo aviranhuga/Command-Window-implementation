@@ -84,21 +84,6 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/aviran/CLionProjects/Ass1/include/Files.h">
-			<Option target="Ass1"/>
-		</Unit>
-		<Unit filename="/home/aviran/CLionProjects/Ass1/src/BaseFile.cpp">
-			<Option target="Ass1"/>
-		</Unit>
-		<Unit filename="/home/aviran/CLionProjects/Ass1/src/Directory.cpp">
-			<Option target="Ass1"/>
-		</Unit>
-		<Unit filename="/home/aviran/CLionProjects/Ass1/src/File.cpp">
-			<Option target="Ass1"/>
-		</Unit>
-		<Unit filename="/home/aviran/CLionProjects/Ass1/src/testMain.cpp">
-			<Option target="Ass1"/>
-		</Unit>
 		<Unit filename="/home/aviran/CLionProjects/Ass1/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
