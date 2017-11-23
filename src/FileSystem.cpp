@@ -3,7 +3,6 @@
 //
 #include "../include/FileSystem.h"
 #include "../include/GlobalVariables.h"
-#include "../include/Commands.h"
 
 FileSystem::FileSystem():rootDirectory(new Directory("Root", nullptr)),workingDirectory(nullptr){
     workingDirectory = this->rootDirectory;
@@ -33,8 +32,7 @@ FileSystem::~FileSystem() { //Destructor
 
 //Copy Constructor
 FileSystem::FileSystem(const FileSystem &other):rootDirectory(nullptr),workingDirectory(nullptr) {
-
-    //copy the root
+    
     Directory* temp = &other.getRootDirectory();
     rootDirectory = new Directory(*temp);
 
@@ -56,13 +54,13 @@ FileSystem::FileSystem(const FileSystem &other):rootDirectory(nullptr),workingDi
             nextdir = path;
             path = "";
         }
-            founddir = false;
-            vector<BaseFile *> vct = (*temp).getChildren();
-            for (unsigned int i = 0; (i < vct.size()) & (founddir == false); i++) {
-                if (vct[i]->getName().compare(nextdir) == 0 && vct[i]->directoryType()) {
-                    temp = (Directory *) (vct[i]);
-                    founddir = true;
-                }
+        founddir = false;
+        vector<BaseFile *> vct = (*temp).getChildren();
+        for (unsigned int i = 0; (i < vct.size()) & (founddir == false); i++) {
+            if (vct[i]->getName().compare(nextdir) == 0 && vct[i]->directoryType()) {
+                temp = (Directory *) (vct[i]);
+                founddir = true;
+            }
         }//end of else
     }//end of while
 
@@ -73,14 +71,48 @@ FileSystem::FileSystem(const FileSystem &other):rootDirectory(nullptr),workingDi
 
 FileSystem& FileSystem::operator=(const FileSystem &rhs) {
 
-    rootDirectory = &rhs.getRootDirectory();
-    workingDirectory = &rhs.getWorkingDirectory();
+    delete(this->rootDirectory);
+
+    Directory* temp = &rhs.getRootDirectory();
+    rootDirectory = new Directory(*temp);
+
+    temp = rootDirectory;
+    string nextdir;
+    size_t found;
+    bool founddir=false;
+
+    //finding working directory
+    string path = rhs.getWorkingDirectory().getAbsolutePath();
+    path = path.substr(1);// get abolute path with out '/' in the start
+
+    while (path.size()!=0){
+        found = path.find('/');
+        if (found != string::npos) {// found the '/' char
+            nextdir = path.substr(0, found);
+            path = path.substr(found + 1);
+        } else {// last dir
+            nextdir = path;
+            path = "";
+        }
+        founddir = false;
+        vector<BaseFile *> vct = (*temp).getChildren();
+        for (unsigned int i = 0; (i < vct.size()) & (founddir == false); i++) {
+            if (vct[i]->getName().compare(nextdir) == 0 && vct[i]->directoryType()) {
+                temp = (Directory *) (vct[i]);
+                founddir = true;
+            }
+        }//end of else
+    }//end of while
+
+    workingDirectory = temp;
 
     if (verbose==1 || verbose==3)cout << "FileSystem& operator=(const FileSystem& rhs)" << endl;
     return *this;
 }
 
 FileSystem& FileSystem::operator=(FileSystem &&rhs) {
+
+    delete(this->rootDirectory);
 
     rootDirectory = &rhs.getRootDirectory();
     workingDirectory = &rhs.getWorkingDirectory();

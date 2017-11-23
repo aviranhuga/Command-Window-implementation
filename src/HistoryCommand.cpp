@@ -11,7 +11,8 @@ void HistoryCommand::execute(FileSystem &fs) {
 
         if (!history.empty())//not empty
                 for (unsigned int i=0; i<history.size(); i++) {
-                        cout << i << "\t" << history[i]->toString() + " " + history[i]->getArgs() << endl;
+                        if (history[i]->toString().compare("error")==0) cout << i << "\t" << history[i]->getArgs() << endl;
+                        else cout << i << "\t" << history[i]->toString() + " " + history[i]->getArgs() << endl;
                 }
 }
 

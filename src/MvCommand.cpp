@@ -33,26 +33,30 @@ void MvCommand::execute(FileSystem &fs) {
         cout << "No such file or directory" << endl;
         return;
     }
-
+    //Destination not exist
     tempdest = findpath(fs,destination);
     if (tempdest== nullptr){
         cout << "No such file or directory" << endl;
         return;
     }
-
+    //no file name
     if (source[source.size()-1]=='/'){
         cout << "No such file or directory" << endl;
         return;
     }
-
+    //Check if its the parents
     Directory *temp=&fs.getWorkingDirectory();
     while (temp->getParent()!= nullptr){
         if (source.compare(temp->getAbsolutePath())==0) {
-            cout << "Can’t move directory" << endl;
+            cout << "Can't move directory" << endl;
             return;
         }
         temp=temp->getParent();
     }//end of while
+    if (source.compare("..")==0){
+        cout << "Can't move directory" << endl;
+        return;
+    }
 
     found = source.find_last_of("/");//if there a path
     if (found != string::npos) {// found the '/' char
@@ -76,6 +80,17 @@ void MvCommand::execute(FileSystem &fs) {
     if (!vct.empty())//not empty
         for (unsigned int i=0; i<vct.size() && foundfile==false ; i++) {
             if (vct[i]->getName().compare(filename) == 0) {//found the file
+                if (vct[i]->directoryType()){
+                    //Check if its the parents
+                    Directory *temp11=&fs.getWorkingDirectory();
+                    while (temp11->getParent()!= nullptr){
+                        if (((Directory *)vct[i])->getAbsolutePath().compare(temp11->getAbsolutePath())==0) {
+                            cout << "Can't move directory" << endl;
+                            return;
+                        }
+                        temp11=temp11->getParent();
+                    }//end of while
+                }
                 if (Findfile(tempdest,filename))return;
                 foundfile=true;
                 if(vct[i]->directoryType()){//he's a directory

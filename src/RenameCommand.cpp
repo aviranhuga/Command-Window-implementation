@@ -29,10 +29,6 @@ void RenameCommand::execute(FileSystem &fs) {
         newname = this->fixstring(newname);
     }else return;
 
-    if(source.compare(fs.getWorkingDirectory().getAbsolutePath())==0){//trying to change the working directory
-        cout << "Can't rename the working directory"<< endl;
-        return;
-    }
 
     found = source.find_last_of("/");//if there a path
     if (found != string::npos) {// found the '/' char
@@ -49,11 +45,18 @@ void RenameCommand::execute(FileSystem &fs) {
         tempsrc = &fs.getWorkingDirectory();
         oldname = source;
     }
+
     bool foundfile=false;
     vector<BaseFile *> vct = (*tempsrc).getChildren();
     if (!vct.empty())//not empty
         for (unsigned int i=0; i<vct.size() && foundfile==false ; i++) {
             if (vct[i]->getName().compare(oldname) == 0) {//found the file
+                if (vct[i]->directoryType()) {
+                    if (((Directory *)vct[i])->getAbsolutePath().compare(fs.getWorkingDirectory().getAbsolutePath()) ==0) {//trying to change the working directory
+                        cout << "Can't rename the working directory" << endl;
+                        return;
+                    }
+                }
                 if (Findfile(tempsrc,newname))return;
                 foundfile=true;
                 //check if the name is legit

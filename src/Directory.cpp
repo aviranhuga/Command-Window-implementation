@@ -157,6 +157,7 @@ Directory::~Directory() { //Destructor
                 pd = vct[i];
                 delete pd;
             }
+    this->parent=nullptr;
     if (verbose==1 || verbose==3)cout << "~Directory()" << endl;
 }
 
@@ -165,11 +166,13 @@ Directory::Directory(const Directory &other):BaseFile(other.getName()),children(
     Directory *tempDIR = nullptr;
     File *tempFILE = nullptr;
 
+    //Copy Children
     vector<BaseFile *> vct = other.children;
     if (!vct.empty())//not empty
         for (unsigned int i = 0; i < vct.size(); i++) {
             if(vct[i]->directoryType()){//he's a directory
                 tempDIR = new Directory(*(Directory *)vct[i]);
+                tempDIR->setParent(this);
                 this->addFile(tempDIR);
             }else{//hes a file
                 tempFILE = new File(vct[i]->getName(),vct[i]->getSize());
@@ -181,9 +184,6 @@ Directory::Directory(const Directory &other):BaseFile(other.getName()),children(
 
 Directory& Directory::operator=(const Directory &rhs) {
 
-    this->setName(rhs.getName());
-    this->setParent(rhs.getParent());
-
     //delete from his parent
     bool found=false;
     if(this->getParent() != nullptr) {
@@ -195,18 +195,45 @@ Directory& Directory::operator=(const Directory &rhs) {
             }
         }
     }
-    //set new children
-    this->children = rhs.children;
 
+    //delete its Children
+    BaseFile *pd = nullptr;
+    vector<BaseFile *> vct = this->getChildren();
+    if (!vct.empty())//not empty
+        for (unsigned int i = 0; i < vct.size(); i++) {
+            pd = vct[i];
+            delete pd;
+        }
+    this->children.clear();
+
+
+    this->setName(rhs.getName());
+    this->setParent(rhs.getParent());
+
+    //set new children
+    //Copy Children
+    Directory *tempDIR = nullptr;
+    File *tempFILE = nullptr;
+    vct = rhs.children;
+    if (!vct.empty())//not empty
+        for (unsigned int i = 0; i < vct.size(); i++) {
+            if(vct[i]->directoryType()){//he's a directory
+                tempDIR = new Directory(*(Directory *)vct[i]);
+                tempDIR->setParent(this);
+                this->addFile(tempDIR);
+            }else{//hes a file
+                tempFILE = new File(vct[i]->getName(),vct[i]->getSize());
+                this->addFile(tempFILE);
+            }
+        }//end of for
+
+    //verbose
     if (verbose==1 || verbose==3)cout << "Directory& operator=(const Directory& rhs)" << endl;
     return *this;
 }
 
 Directory& Directory::operator=(Directory &&rhs) {
 
-    this->setName(rhs.getName());
-    this->setParent(rhs.getParent());
-
     //delete from his parent
     bool found=false;
     if(this->getParent() != nullptr) {
@@ -218,8 +245,20 @@ Directory& Directory::operator=(Directory &&rhs) {
             }
         }
     }
-    //set new children
+
+    //delete its Children
+    BaseFile *pd = nullptr;
+    vector<BaseFile *> vct = this->getChildren();
+    if (!vct.empty())//not empty
+        for (unsigned int i = 0; i < vct.size(); i++) {
+            pd = vct[i];
+            delete pd;
+        }
     this->children.clear();
+
+    this->setName(rhs.getName());
+    this->setParent(rhs.getParent());
+    //set new children
     this->children = rhs.children;
 
     if (verbose==1 || verbose==3)cout << "Directory& operator=(Directory&& rhs)" << endl;
@@ -227,7 +266,6 @@ Directory& Directory::operator=(Directory &&rhs) {
 }
 
 Directory::Directory(Directory &&rhs):BaseFile(rhs.getName()),children(rhs.getChildren()), parent(rhs.getParent()){
-
     if (verbose==1 || verbose==3)cout << "Directory(Directory&& rhs)" << endl;
 }
 

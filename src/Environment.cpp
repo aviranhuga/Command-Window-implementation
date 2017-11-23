@@ -19,7 +19,10 @@ void Environment::start() {
     while(exit) { // run until user type exit
         cout << fs.getWorkingDirectory().getAbsolutePath() << ">"; // print path
         getline(cin,currentline); // get line from user
-        if(currentline.compare("exit")==0)return;
+        if(currentline.compare("exit")==0){
+            cout << endl;
+            return;
+        }
         if (verbose==2 || verbose==3) cout << currentline << endl; // verbose
         currentline=DeleteSpaces(currentline); // delete the spaces
         found = currentline.find(" "); // find the first " "
@@ -77,7 +80,6 @@ BaseCommand* Environment::findcommand(string command, string args) {
    else  if (command.compare("verbose")==0)
        ptr = new VerboseCommand(args);
 
-
     else ptr = new ErrorCommand(command + " " +args);
     return ptr;
 }
@@ -103,7 +105,7 @@ string Environment::DeleteSpaces(string str) {
 
 Environment::~Environment() { //Destructor
     BaseCommand *pd = nullptr;
-    vector<BaseCommand *> vct = getHistory();
+    vector<BaseCommand *> vct = commandsHistory;
     if (!vct.empty())//not empty
         for (unsigned int i = 0; i < vct.size(); i++) {
             pd = vct[i];
@@ -113,21 +115,60 @@ Environment::~Environment() { //Destructor
 }
 
 //Copy Constructor
-Environment::Environment(const Environment &other):commandsHistory(other.getHistory()),fs(other.fs) {
+Environment::Environment(const Environment &other):commandsHistory(),fs(other.fs) {
+    BaseCommand* temp = nullptr;
+    vector<BaseCommand *> vct = other.getHistory();
+    if (!vct.empty())//not empty
+        for (unsigned int i = 0; i < vct.size(); i++) {
+            if (vct[i]->toString().compare("error"))temp = findcommand(vct[i]->getArgs(),"");
+            else temp = findcommand(vct[i]->toString(),vct[i]->getArgs());
+
+            this->commandsHistory.push_back(temp);
+        }
+    //verbose
     if (verbose==1 || verbose==3)cout << "Environment(const Environment& other)" << endl;
 }
 
 Environment& Environment::operator=(const Environment &rhs) {
 
-    this->fs=rhs.fs;
-    this->commandsHistory = rhs.getHistory();
+    //Clear History
+    BaseCommand *pd = nullptr;
+    vector<BaseCommand *> vct = commandsHistory;
+    if (!vct.empty())//not empty
+        for (unsigned int i = 0; i < vct.size(); i++) {
+            pd = vct[i];
+            delete pd;
+        }
+    this->commandsHistory.clear();
+    //delete and change fs.
+    this->fs = rhs.fs;
+    //add new command History
+    BaseCommand* temp = nullptr;
+    vct = rhs.getHistory();
+    if (!vct.empty())//not empty
+        for (unsigned int i = 0; i < vct.size(); i++) {
+            if (vct[i]->toString().compare("error"))temp = findcommand(vct[i]->getArgs(),"");
+            else temp = findcommand(vct[i]->toString(),vct[i]->getArgs());
+            this->commandsHistory.push_back(temp);
+        }
+
     if (verbose==1 || verbose==3)cout << "Environment& operator=(const Environment& rhs)" << endl;
     return *this;
 }
 
 Environment& Environment::operator=(Environment &&rhs) {
-
+    //Clear History
+    BaseCommand *pd = nullptr;
+    vector<BaseCommand *> vct = this->commandsHistory;
+    if (!vct.empty())//not empty
+        for (unsigned int i = 0; i < vct.size(); i++) {
+            pd = vct[i];
+            delete pd;
+        }
+    this->commandsHistory.clear();
+    //delete fs and get new fs.
     this->fs=rhs.fs;
+    //set new commandHistory
     this->commandsHistory = rhs.getHistory();
     if (verbose==1 || verbose==3)cout << "Environment& operator=(Environment&& rhs)" << endl;
     return *this;

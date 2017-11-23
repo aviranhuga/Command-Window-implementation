@@ -34,7 +34,7 @@ Directory* BaseCommand::findpath(FileSystem & fs, string path) {
                 }
 
             if(nextdir.compare("..")==0) {
-                if (!(temp->getParent()== nullptr))
+                if (temp->getParent()== nullptr)return nullptr;
                 temp = temp->getParent();
             }
             else {

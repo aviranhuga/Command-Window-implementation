@@ -19,13 +19,13 @@ void RmCommand::execute(FileSystem &fs) {
     Directory *tempsrc = nullptr;
 
     if (args.compare("/")==0){
-        cout << "Can’t remove directory" << endl;
+        cout << "Can't remove directory" << endl;
         return;
     }
     tempsrc = &fs.getWorkingDirectory();
     while (tempsrc->getParent()!= nullptr){
         if (args.compare(tempsrc->getAbsolutePath())==0) {
-            cout << "Can’t remove directory" << endl;
+            cout << "Can't remove directory" << endl;
             return;
         }
         tempsrc=tempsrc->getParent();
@@ -55,6 +55,17 @@ void RmCommand::execute(FileSystem &fs) {
     if (!vct.empty())//not empty
         for (unsigned int i=0; i<vct.size() && foundfile==false ; i++) {
             if (vct[i]->getName().compare(filename) == 0) {//found the file
+                if (vct[i]->directoryType()){
+                    //Check if its the parents
+                    Directory *temp11=&fs.getWorkingDirectory();
+                    while (temp11->getParent()!= nullptr){
+                        if (((Directory *)vct[i])->getAbsolutePath().compare(temp11->getAbsolutePath())==0) {
+                            cout << "Can't remove directory" << endl;
+                            return;
+                        }
+                        temp11=temp11->getParent();
+                    }//end of while
+                }
                 foundfile=true;
                 tempsrc->removeFile(vct[i]);
             }//end of found file
